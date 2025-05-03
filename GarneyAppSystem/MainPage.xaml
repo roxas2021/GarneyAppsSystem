@@ -1,9 +1,83 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GarneyAppSystem.MainPage">
+             Shell.NavBarIsVisible="False"
+             x:Class="GarneyAppSystem.MainPage"
+             xmlns:local="clr-namespace:GarneyAppSystem"
+             xmlns:graphics="clr-namespace:Microsoft.Maui.Graphics;assembly=Microsoft.Maui.Graphics"
+             xmlns:customControls="clr-namespace:GarneyAppSystem.CustomControls"
+             BackgroundColor="White">
 
-    <ScrollView>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:CurvedHeaderDrawable x:Key="CurvedHeaderDrawable" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <!-- Top Curved Green Background -->
+        <Image Source="background.svg"
+               Aspect="AspectFill"
+               HorizontalOptions="Fill"
+               VerticalOptions="Fill" />
+
+        <Grid RowDefinitions="Auto, *"
+              Padding="30,100,30,0"
+              ZIndex="1">
+
+            <VerticalStackLayout Grid.Row="0"
+                                 HorizontalOptions="Center"
+                                 Spacing="10">
+                <Image Source="logo.png"
+                       HeightRequest="150" />
+                <Label Text="GARNEY"
+                       FontAttributes="Bold"
+                       FontFamily="PoppinsBold"
+                       FontSize="48"
+                       TextColor="White"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Row="1"
+                                 Spacing="20"
+                                 Padding="0,120,0,0"
+                                 VerticalOptions="Start"
+                                 HorizontalOptions="Center">
+                <Border Stroke="#4BA734" StrokeThickness="2" StrokeShape="RoundRectangle 25" WidthRequest="230" Padding="10">
+                    <customControls:StandardEntry 
+                        TextColor="Green"
+                        BackgroundColor="Transparent" 
+                        Margin="8,4"
+                        Text="Enter Email Address" />
+                </Border>
+
+                <Border Stroke="#4BA734" StrokeThickness="2" StrokeShape="RoundRectangle 25" WidthRequest="230" Padding="10">
+                    <customControls:StandardEntry
+                        TextColor="Green"
+                        BackgroundColor="Transparent"
+                        Margin="8,4"
+                        Text="Enter Password" />
+                </Border>
+
+                <Button Text="LOGIN"
+                        BackgroundColor="#65C74C"
+                        TextColor="White"
+                        CornerRadius="25"
+                        HeightRequest="40"
+                        Margin="0,25,0,0"
+                        WidthRequest="230" />
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
+
+    <!--<ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="#4BA734" Offset="0.0"/>
+            <GradientStop Color="#65C74C" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>-->
+
+    <!--<ScrollView>
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
@@ -31,6 +105,6 @@
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
         </VerticalStackLayout>
-    </ScrollView>
+    </ScrollView>-->
 
 </ContentPage>

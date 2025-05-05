@@ -1,26 +1,21 @@
-namespace GarneyAppSystem;
+namespace GarneyAppSystem.Views.Home;
 using GarneyAppSystem.Views.Home;
 using GarneyAppSystem.Views.Dashboard;
 using GarneyAppSystem.Views.Location;
 using GarneyAppSystem.Views.Profile;
 
-public partial class BasePage : ContentView
+public partial class HomeBase : ContentPage
 {
-	public BasePage()
+	public HomeBase()
 	{
 		InitializeComponent();
+
         //ContentPlaceHolder.Content = new HomeIndex();
     }
     //public async void SetContent(View content)
     //{
-    //    await Navigation.PushAsync(new HomeIndex());
+    //    ContentPlaceHolder.Content = new HomeIndex();
     //}
-
-    public View PageContent
-    {
-        get => ContentPlaceHolder.Content;
-        set => ContentPlaceHolder.Content = value;
-    }
 
     private async void OnBtnClickedHome(object sender, EventArgs e)
     {

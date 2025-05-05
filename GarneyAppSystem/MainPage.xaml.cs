@@ -1,4 +1,6 @@
-﻿namespace GarneyAppSystem
+﻿using GarneyAppSystem.Views.Home;
+
+namespace GarneyAppSystem
 {
     public partial class MainPage : ContentPage
     {
@@ -8,26 +10,22 @@
         {
             InitializeComponent();
             #if ANDROID
-                        var window = Platform.CurrentActivity?.Window;
-                        if (window != null)
-                        {
-                            window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#4BA734")); // your green color
-                            window.DecorView.SystemUiVisibility = (Android.Views.StatusBarVisibility)Android.Views.SystemUiFlags.LightStatusBar; // Optional: dark icons
-                        }
+               var window = Platform.CurrentActivity?.Window;
+               if (window != null)
+               {
+                    window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#4BA734")); // your green color
+                    window.DecorView.SystemUiVisibility = (Android.Views.StatusBarVisibility)Android.Views.SystemUiFlags.LightStatusBar; // Optional: dark icons
+               }
             #endif
 
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private async void OnLoginButtonClicked(object sender, EventArgs e)
         {
-            count++;
+            string email = txtEmail.Text;
+            string password = txtPassword.Text;
 
-            //if (count == 1)
-            //    CounterBtn.Text = $"Clicked {count} time";
-            //else
-            //    CounterBtn.Text = $"Clicked {count} times";
-
-            //SemanticScreenReader.Announce(CounterBtn.Text);
+            await Navigation.PushAsync(new HomeIndex());
         }
     }
 

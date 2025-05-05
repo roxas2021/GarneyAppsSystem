@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GarneyAppSystem.BasePage">
+             x:Class="GarneyAppSystem.Views.Home.HomeBase"
+             Title="HomeBase">
 
     <Grid RowSpacing="0"
           BackgroundColor="White">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
@@ -27,12 +28,12 @@
                WidthRequest="20"
                VerticalOptions="Center"
                HorizontalOptions="End"
-               Margin="0, 0, 10, 0"
+               Margin="0, 15, 10, 0"
                Grid.Column="1" />
         </Grid>
 
         <!-- Center Content -->
-        <ContentView x:Name="ContentPlaceHolder" Grid.Row="1" BackgroundColor="#4BA734"/>
+        <ContentView x:Name="ContentPlaceHolder" Grid.Row="1"/>
 
         <!-- Footer Content -->
         <Grid Grid.Row="2">
@@ -69,4 +70,4 @@
             </Grid>
         </Grid>
     </Grid>
-</ContentView>
+</ContentPage>

@@ -18,6 +18,11 @@ namespace GarneyAppSystemAPI.Repo
             return _dbConn.user.FirstOrDefault(u => u.Email == email);
         }
 
+        public async Task<user> getUserById(int Id)
+        {
+            return _dbConn.user.FirstOrDefault(u => u.Id == Id);
+        }
+
         public async Task<bool> VerifyUser(string email, string password)
         {
             return _dbConn.user.Any(u => u.Email == email && u.PasswordHash == password);

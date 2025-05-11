@@ -1,4 +1,5 @@
 using ApplicationService.Utility;
+using GarneyAppSystemAPI.Middleware;
 using GarneyAppSystemAPI.Repo;
 using GarneyAppSystemAPI.Services;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     ));
 
 var app = builder.Build();
+
+app.UseMiddleware<AuthTokenHandler>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -43,7 +43,17 @@ namespace GarneyAppSystemAPI.Controllers
 
             await _userRepo.InsertUserLogin(login);
 
-            return Ok(new { message = "User successfully login." , token, user = user });
+            ApiResult apidata = new ApiResult();
+            apidata.token = token;
+            apidata.msg = "User successfully login.";
+
+            var dataModel = new EntityMaster
+            {
+                apiResult = apidata,
+                user = user
+            };
+
+            return Ok(new { dataModel = dataModel });
         }
     }
 }

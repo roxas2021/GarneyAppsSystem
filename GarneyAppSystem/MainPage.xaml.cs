@@ -1,5 +1,6 @@
 ﻿using GarneyAppSystem.ApiService;
 using GarneyAppSystem.Views.Home;
+//using Android.OS;
 
 namespace GarneyAppSystem
 {
@@ -11,14 +12,6 @@ namespace GarneyAppSystem
         public MainPage()
         {
             InitializeComponent();
-            #if ANDROID
-               var window = Platform.CurrentActivity?.Window;
-               if (window != null)
-               {
-                    window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#4BA734")); // your green color
-                    window.DecorView.SystemUiVisibility = (Android.Views.StatusBarVisibility)Android.Views.SystemUiFlags.LightStatusBar; // Optional: dark icons
-               }
-            #endif
         }
 
         private async void OnLoginButtonClicked(object sender, EventArgs e)

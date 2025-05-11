@@ -3,56 +3,56 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GarneyAppSystem.Views.Home.GarbageTrackPage"
              xmlns:layout="clr-namespace:GarneyAppSystem"
+             xmlns:customControls="clr-namespace:GarneyAppSystem.CustomControls"
+              xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              Title="GarbageTrackPage">
 
     <layout:BasePage x:Name="BasePage">
-        <layout:BasePage.PageContent>
-            <Grid>
+        <layout:BasePage.HeaderContent>
+            <Grid RowSpacing="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="1"/>
                 </Grid.RowDefinitions>
 
-                <HorizontalStackLayout Grid.Row="0"
-                       HorizontalOptions="Start"
-                       Spacing="10"
-                       HeightRequest="80"
-                       Padding="35,0,0,0"
-                       Margin="0,0,0,20">
+                <VerticalStackLayout Grid.Row="0" Margin="0" Spacing="0">
+                    <Grid Padding="20, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                    <Image Source="route.png"
-                       HeightRequest="100"
-                       WidthRequest="100"
-                       BackgroundColor="#4BA734"
-                       VerticalOptions="Center"/>
-
-                    <VerticalStackLayout
-                        Spacing="0"
-                        HorizontalOptions="FillAndExpand"
-                        Padding="0"
-                        Margin="5,0,0,0">
-
-                        <Label Text="Track Garbage Location"
+                        <Label Grid.Column="0"
+                               Text="Track Garbage"
+                               FontFamily="Montserat"
+                               FontSize="15"
                                FontAttributes="Bold"
-                               FontFamily="RobotoMono"
-                               FontSize="21"
-                               TextColor="White"
-                               VerticalOptions="Center"
-                               HorizontalOptions="StartAndExpand"
-                               LineBreakMode="WordWrap"
-                               HorizontalTextAlignment="Start"
-                               WidthRequest="250"/>
-                    </VerticalStackLayout>
+                               Margin="0,8,0,0"/>
 
-                </HorizontalStackLayout>
+                        <Image Source="bell2.png"
+                           HeightRequest="23"
+                           WidthRequest="23"
+                           VerticalOptions="Start"
+                           HorizontalOptions="End"
+                           Margin="0, 10, 5, 0"
+                           Grid.Column="1" />
+                    </Grid>
+                </VerticalStackLayout>
 
-                <Border Grid.Row="1"
-                    StrokeThickness="0"
-                    StrokeShape="RoundRectangle 30,30,0,0"
-                    BackgroundColor="White">
-
-
-                </Border>
+                <BoxView Grid.Row="1" HeightRequest="1"
+                     HorizontalOptions="Fill"
+                     Color="#EEE"
+                     Margin="0,0,0,0"/>
+            </Grid>
+        </layout:BasePage.HeaderContent>
+        <layout:BasePage.PageContent>
+            <Grid>
+                <maps:Map
+                    IsScrollEnabled="True"
+                    IsShowingUser="True"
+                    IsTrafficEnabled="True"
+                    IsZoomEnabled="True"
+                    MapType="Street"/>
             </Grid>
         </layout:BasePage.PageContent>
     </layout:BasePage>

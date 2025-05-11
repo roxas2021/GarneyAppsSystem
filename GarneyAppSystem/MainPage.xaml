@@ -4,18 +4,10 @@
              Shell.NavBarIsVisible="False"
              x:Class="GarneyAppSystem.MainPage"
              xmlns:local="clr-namespace:GarneyAppSystem"
-             xmlns:graphics="clr-namespace:Microsoft.Maui.Graphics;assembly=Microsoft.Maui.Graphics"
              xmlns:customControls="clr-namespace:GarneyAppSystem.CustomControls"
              BackgroundColor="White">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <local:CurvedHeaderDrawable x:Key="CurvedHeaderDrawable" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <Grid>
-        <!-- Top Curved Green Background -->
         <Image Source="background.svg"
                Aspect="AspectFill"
                HorizontalOptions="Fill"
@@ -32,7 +24,7 @@
                        HeightRequest="150" />
                 <Label Text="GARNEY"
                        FontAttributes="Bold"
-                       FontFamily="PoppinsBold"
+                       FontFamily="Montserrat"
                        FontSize="48"
                        TextColor="White"
                        HorizontalOptions="Center" />

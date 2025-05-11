@@ -25,6 +25,12 @@ public partial class BasePage : ContentView
         set => ContentPlaceHolder.Content = value;
     }
 
+    public View HeaderContent
+    {
+        get => HeaderPlaceHolder.Content;
+        set => HeaderPlaceHolder.Content = value;
+    }
+
     private async void OnBtnClickedHome(object sender, EventArgs e)
     {
         var image = (Image)sender;
@@ -49,7 +55,7 @@ public partial class BasePage : ContentView
 
         await image.ScaleTo(1, 100, Easing.CubicOut);
 
-        await Navigation.PushAsync(new DashboardBase());
+        await Navigation.PushAsync(new MarketPage());
     }
 
     private async void OnBtnClickedprofile(object sender, EventArgs e)
@@ -72,5 +78,10 @@ public partial class BasePage : ContentView
         await image.ScaleTo(1, 100, Easing.CubicOut);
 
         await Navigation.PushAsync(new GarbageTrackPage());
+    }
+
+    private async void onBtnClickUpload(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new UploadPage());
     }
 }

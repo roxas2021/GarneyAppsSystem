@@ -3,55 +3,198 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GarneyAppSystem.Views.Home.UploadPage"
              xmlns:layout="clr-namespace:GarneyAppSystem"
+             xmlns:customControls="clr-namespace:GarneyAppSystem.CustomControls"
              Title="UploadPage">
 
     <layout:BasePage x:Name="BasePage">
+        <layout:BasePage.HeaderContent>
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="1"/>
+                </Grid.RowDefinitions>
+                
+                <VerticalStackLayout Grid.Row="0" Margin="0" Spacing="0">
+                    <Grid Padding="10, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <HorizontalStackLayout Grid.Row="0"
+                               HorizontalOptions="Start"
+                               Spacing="10"
+                               HeightRequest="50"
+                               Padding="0"
+                               Margin="0"
+                               x:Name="MainContent">
+                            
+                            <VerticalStackLayout 
+                                 Spacing="0"
+                                 VerticalOptions="FillAndExpand"
+                                 Padding="0">
+
+                                <Border Stroke="#eee" 
+                                        StrokeThickness="2" 
+                                        StrokeShape="RoundRectangle 20" 
+                                        VerticalOptions="CenterAndExpand"
+                                        WidthRequest="280"
+                                        Margin="0,5,0,0"
+                                        Padding="7">
+                                    
+                                    <customControls:StandardEntry 
+                                        TextColor="#2E4A21"
+                                        BackgroundColor="Transparent" 
+                                        Margin="5,0,0,0"
+                                        FontSize="11"
+                                        Placeholder="Search here"
+                                        x:Name="txtEmail"/>
+                                </Border>
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+
+                        <Image Source="bell2.png"
+                           HeightRequest="23"
+                           WidthRequest="23"
+                           VerticalOptions="Start"
+                           HorizontalOptions="End"
+                           Margin="0, 10, 5, 0"
+                           Grid.Column="1" />
+                    </Grid>
+                </VerticalStackLayout>
+
+                <BoxView Grid.Row="1" HeightRequest="1"
+                     HorizontalOptions="Fill"
+                     Color="#EEE"
+                     Margin="0,0,0,0"/>
+            </Grid>
+        </layout:BasePage.HeaderContent>
         <layout:BasePage.PageContent>
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+                <CollectionView ItemsSource="{Binding Posts}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout Padding="10" Spacing="5">
+                                <Grid ColumnSpacing="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
-                <HorizontalStackLayout Grid.Row="0"
-                       HorizontalOptions="Start"
-                       Spacing="10"
-                       HeightRequest="80"
-                       Padding="35,0,0,0"
-                       Margin="0,0,0,20">
+                                    <!--<Image Source="{Binding ProfileImage}"
+                                           HeightRequest="40"
+                                           WidthRequest="40"
+                                           VerticalOptions="Center"
+                                           Margin="0,5" />-->
 
-                    <Image Source="upload.png"
-                       HeightRequest="100"
-                       WidthRequest="100"
-                       BackgroundColor="#4BA734"
-                       VerticalOptions="Center"/>
+                                    <Frame HeightRequest="40"
+                                           WidthRequest="40"
+                                           Padding="0"
+                                           BorderColor="Transparent"
+                                           BackgroundColor="Transparent"
+                                           CornerRadius="20"
+                                           HasShadow="False">
+                                        
+                                        <Image Source="postimage.jpg"
+                                               HeightRequest="40"
+                                               WidthRequest="40"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center" />
+                                    </Frame>
 
-                    <VerticalStackLayout
-                        Spacing="0"
-                        HorizontalOptions="FillAndExpand"
-                        Padding="0,20,0,0"
-                        Margin="5,0,0,0">
+                                    <VerticalStackLayout Grid.Column="1">
+                                        <!--<Label Text="{Binding Name}" FontAttributes="Bold" FontSize="13" />-->
+                                        <Label Text="Ferdinand Roxas" FontAttributes="Bold" FontSize="13" />
+                                        <Label Text="{Binding CreatedAt}" FontSize="10" TextColor="Gray" />
+                                    </VerticalStackLayout>
 
-                        <Label Text="Upload Photo"
-                            FontAttributes="Bold"
-                            FontFamily="RobotoMono"
-                            FontSize="28"
-                            TextColor="White"
-                            VerticalOptions="Center"
-                            Margin="0,0,0,5"
-                            HorizontalOptions="StartAndExpand"/>
-                    </VerticalStackLayout>
+                                    <Image Grid.Column="2" Source="close.png"
+                                           HeightRequest="15" WidthRequest="15"
+                                           VerticalOptions="Start" />
+                                </Grid>
 
-                </HorizontalStackLayout>
+                                <!--Comment Section-->
+                                <Label Text="{Binding Content}" FontSize="12" Margin="50,0,0,0" />
+                                
+                                <!--Image Uploaded Section-->
+                                <!--<ScrollView Orientation="Horizontal" Margin="50,0,0,0">
+                                    <StackLayout Orientation="Horizontal" Spacing="10">
+                                        <Image Source="{Binding UploadedImages[0]}" HeightRequest="100" Aspect="AspectFill" />
+                                        <Image Source="{Binding UploadedImages[1]}" HeightRequest="100" Aspect="AspectFill" />
+                                        --><!-- Add more images as necessary --><!--
+                                    </StackLayout>
+                                </ScrollView>-->
+                                <!--<Image Source="garbage1.jpg" HeightRequest="200" Margin="50,0,0,0" Aspect="AspectFill" />-->
+                                <Frame HeightRequest="150"
+                                       Padding="0"
+                                       Margin="50,0,0,0"
+                                       BorderColor="Transparent"
+                                       BackgroundColor="Transparent"
+                                       CornerRadius="10"
+                                       HasShadow="False">
 
-                <Border Grid.Row="1"
-                    StrokeThickness="0"
-                    StrokeShape="RoundRectangle 30,30,0,0"
-                    BackgroundColor="White">
+                                    <Image Source="{Binding ImagePath}"
+                                       HeightRequest="150"
+                                       Aspect="AspectFill"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="FillAndExpand"/>
+                                </Frame>
+                                <!--<Image Source="{Binding ImagePath}" HeightRequest="200" Aspect="AspectFill" />-->
 
+                                <HorizontalStackLayout Spacing="10" Margin="50,0,0,0">
+                                    <Image Source="comments.png"
+                                           HeightRequest="18"
+                                           WidthRequest="18"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Start" />
+                                    <Label Text="Comments" FontSize="12" VerticalOptions="Center" />
 
+                                    <Image Source="location2.png"
+                                           HeightRequest="18"
+                                           WidthRequest="18"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Start"
+                                           Margin="25,0,0,0"/>
+                                    <Label Text="View Location" FontSize="12" VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+
+                                <BoxView HeightRequest="1" Color="#EEE" Margin="0,5,0,0" />
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Border WidthRequest="50"
+                        HeightRequest="50"
+                        BackgroundColor="White"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 30"
+                        HorizontalOptions="End"
+                        VerticalOptions="End"
+                        Margin="20"
+                        ZIndex="10">
+                    
+                    <Border.Shadow>
+                        <Shadow Brush="#000000"
+                                Offset="0,4"
+                                Radius="6"
+                                Opacity="0.3" />    
+                    </Border.Shadow>
+
+                    <Image Source="screenshot2.png"
+                           WidthRequest="30"
+                           HeightRequest="30"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <!--<TapGestureRecognizer Tapped="onBtnClickUpload" />-->
+                        </Image.GestureRecognizers>
+                    </Image>
                 </Border>
             </Grid>
+
         </layout:BasePage.PageContent>
     </layout:BasePage>
+
 </ContentPage>

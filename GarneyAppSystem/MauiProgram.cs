@@ -3,6 +3,8 @@ using Microsoft.Extensions.Logging;
 using GarneyAppSystem.Platforms;
 using CommunityToolkit.Maui;
 using GarneyAppSystem.ApiService;
+using Microsoft.Maui.Maps.Handlers;
+using Microsoft.Maui.Handlers;
 
 namespace GarneyAppSystem
 {
@@ -20,19 +22,26 @@ namespace GarneyAppSystem
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("Poppins-Regular.ttf", "Poppins");
                     fonts.AddFont("Poppins-Bold.ttf", "PoppinsBold");
-                });
+                })
+                .UseMauiMaps();
 
-            #if DEBUG
+#if DEBUG
             builder.Logging.AddDebug();
-            #endif
+#endif
 
-            builder.Services.AddSingleton<CurvedHeaderDrawable>();
             Microsoft.Maui.Handlers.ElementHandler.ElementMapper.AppendToMapping("Classic", (handler, view) =>
             {
                 if (view is StandardEntry)
                 {
                     EntryMapper.Map(handler, view);
                 }
+            });
+
+            DatePickerHandler.Mapper.AppendToMapping("NoUnderline", (handler, view) =>
+            {
+#if ANDROID
+            handler.PlatformView.Background = null;
+#endif
             });
 
             return builder.Build();

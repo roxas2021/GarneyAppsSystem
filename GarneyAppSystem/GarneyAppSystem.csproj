@@ -51,7 +51,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.png" Color="#4BA734" BaseSize="300,500" />
+    <!--<MauiSplashScreen Include="Resources\Splash\splash.png" Resize="True" BaseSize="1280,1920" />-->
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -65,12 +65,26 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="8.0.1" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.50" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+	  <AndroidResource Remove="Platforms\Android\Resources\values\styles.xml" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Splash\splash.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Maui.Controls.Maps" Version="9.0.70" />
+		<PackageReference Include="Microsoft.Maui.Essentials" Version="9.0.0" />
+	</ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net9.0-android'">
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.LiveData.Core" Version="2.8.7.2" />
+  </ItemGroup>
+
+  <ItemGroup>
 	  <ProjectReference Include="..\ApplicationService\ApplicationService.csproj" />
 	</ItemGroup>
 
@@ -99,9 +113,20 @@
 	  <MauiXaml Update="Views\Location\LocationIndex.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Profile\EditProfile.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Profile\ProfileIndex.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Views\Layout\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <!--<MauiSplashScreen Include="Resources\Splash\splash.png" Resize="True" BaseSize="402,874" />-->
 	</ItemGroup>
 
 </Project>

@@ -7,32 +7,16 @@
           BackgroundColor="White">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
         <!-- Header Content -->
-        <Grid Grid.Row="0" BackgroundColor="#4BA734" Padding="15, 0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Grid.Shadow>
-                <Shadow Brush="#000000" Offset="3, 3" Opacity="0.3"/>
-            </Grid.Shadow>
-
-            <Image Source="bell.png"
-               HeightRequest="20"
-               WidthRequest="20"
-               VerticalOptions="Center"
-               HorizontalOptions="End"
-               Margin="0, 0, 10, 0"
-               Grid.Column="1" />
-        </Grid>
+        <ContentView x:Name="HeaderPlaceHolder" Grid.Row="0" BackgroundColor="#fff"/>
 
         <!-- Center Content -->
-        <ContentView x:Name="ContentPlaceHolder" Grid.Row="1" BackgroundColor="#4BA734"/>
+        <ContentView x:Name="ContentPlaceHolder" Grid.Row="1" BackgroundColor="#fff" Margin="5"/>
 
         <!-- Footer Content -->
         <Grid Grid.Row="2">
@@ -46,27 +30,67 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Image x:Name="homeBtn" Source="home.png" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="30" WidthRequest="30">
+                <Image x:Name="homeBtn" Source="home2.png" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" WidthRequest="25">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnBtnClickedHome"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Image x:Name="taskBtn" Source="dashboard.png" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="30" WidthRequest="30">
+                <Image x:Name="taskBtn" Source="market2.png" Grid.Column="1" Margin="0,0,40,0" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" WidthRequest="25">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnBtnClickeddashboard"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <Image x:Name="inboxBtn" Source="profile.png" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="30" WidthRequest="30">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnBtnClickedprofile"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Image x:Name="profileBtn" Source="location.png" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="30" WidthRequest="30">
+                <Image x:Name="profileBtn" Source="location2.png" Grid.Column="2" Margin="40,0,0,0" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" WidthRequest="25">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnBtnClickedLocation"/>
                     </Image.GestureRecognizers>
                 </Image>
+                <Image x:Name="inboxBtn" Source="profile2.png" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="25" WidthRequest="25">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBtnClickedprofile"/>
+                    </Image.GestureRecognizers>
+                </Image>    
             </Grid>
+
+            <Border BackgroundColor="#fff"
+                    WidthRequest="50"
+                    HeightRequest="50"
+                    StrokeThickness="0.5"
+                    StrokeShape="RoundRectangle 15"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Start"
+                    Margin="0,-30,0,0"
+                    ZIndex="10">
+
+                <Border.Shadow>
+                    <Shadow Brush="#000000"
+                                Offset="0,4"
+                                Radius="6"
+                                Opacity="0.3" />
+                </Border.Shadow>
+
+                <Image Source="timeline.png"
+                           WidthRequest="50"
+                           HeightRequest="50"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="onBtnClickUpload" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Border>
+
+            <!--<Image Source="timeline.png"
+                   WidthRequest="60"
+                   HeightRequest="60"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start"
+                   Margin="0,-30,0,0"
+                   ZIndex="10">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="onBtnClickUpload" />
+                </Image.GestureRecognizers>
+            </Image>-->
         </Grid>
     </Grid>
 </ContentView>

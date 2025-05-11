@@ -27,5 +27,18 @@ namespace GarneyAppSystem.ApiService
 
             return dataModel?.dataModel;
         }
+
+        public async Task<user> updateUserDetails(user user)
+        {
+            //user.UserType
+            string endpoint = "user/update";
+            var content = new StringContent(JsonSerializer.Serialize(user), Encoding.UTF8, "application/json");
+            var response = await _httpClient.doPostAssync(content, endpoint);
+            if (response != null)
+            {
+                return response.dataModel.user;
+            }
+            return null;
+        }
     }
 }

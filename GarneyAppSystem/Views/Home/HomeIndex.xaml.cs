@@ -34,6 +34,7 @@ public partial class HomeIndex : ContentPage
     {
         await Navigation.PushAsync(new GarbageTrackPage());
     }
+
     protected override async void OnAppearing()
     {
         base.OnAppearing();
@@ -54,6 +55,73 @@ public partial class HomeIndex : ContentPage
         {
             LoadingIndicator.IsVisible = false;
             MainContent.IsVisible = true;
+        }
+
+        var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+
+        if(status != PermissionStatus.Granted)
+        {
+            status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+        }
+
+        if (status == PermissionStatus.Granted)
+        {
+            try
+            {
+                var location = await Geolocation.GetLastKnownLocationAsync();
+
+                if (location == null)
+                {
+                    location = await Geolocation.GetLocationAsync(new GeolocationRequest
+                    {
+                        DesiredAccuracy = GeolocationAccuracy.Medium,
+                        Timeout = TimeSpan.FromSeconds(10)
+                    });
+                }
+
+                if (location == null)
+                {
+                    bool goToSettings = await DisplayAlert(
+                        "Location Required",
+                        "Please enable location services in device settings.",
+                        "Go to Settings",
+                        "Cancel");
+
+                    if (goToSettings)
+                    {
+                        AppInfo.ShowSettingsUI();
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}");
+                }
+            }
+            catch (FeatureNotEnabledException)
+            {
+                bool goToSettings = await DisplayAlert(
+                    "Location Disabled",
+                    "Please enable location services in device settings.",
+                    "Go to Settings",
+                    "Cancel");
+
+                if (goToSettings)
+                {
+                    AppInfo.ShowSettingsUI();
+                }
+            }
+            catch (PermissionException)
+            {
+                await DisplayAlert("Permission Error", "Location permission is not granted.", "OK");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Unable to get location: {ex.Message}", "OK");
+            }
+        }
+        else
+        {
+            await DisplayAlert("Permission Required", "Please enable location permission.", "OK");
         }
     }
 }

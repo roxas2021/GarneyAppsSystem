@@ -61,5 +61,35 @@ namespace GarneyAppSystem.ApiService
 
             return null;
         }
+
+        public async Task<ApiResponseWrapper> DoGetAsync(string endpoint)
+        {
+            try
+            {
+                string authToken = Preferences.Get("authToken", string.Empty);
+
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", authToken);
+
+                var response = await _httpClient.GetAsync(getUrl() + endpoint);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string body = await response.Content.ReadAsStringAsync();
+
+                    var wrapper = JsonSerializer.Deserialize<ApiResponseWrapper>(body, new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+
+                    return wrapper;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[DoGetAsync Error] {ex.Message}");
+            }
+
+            return null;
+        }
     }
 }

@@ -6,68 +6,207 @@
              xmlns:layout="clr-namespace:GarneyAppSystem"
              BackgroundColor="#4BA734">
 
-    <layout:BasePage x:Name="BasePage">
-        <layout:BasePage.PageContent>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                
-                <HorizontalStackLayout Grid.Row="0"
-                       HorizontalOptions="Start"
-                       Spacing="10"
-                       HeightRequest="140"
-                       Padding="50,0,0,0"
-                       Margin="0,0,0,20">
+        <layout:BasePage x:Name="BasePage">
+            <layout:BasePage.PageContent>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                    <Image Source="defaultpicture3.png"
-                       HeightRequest="110"
-                       WidthRequest="110"
-                       BackgroundColor="#4BA734"
-                       VerticalOptions="Center"/>
+                    <HorizontalStackLayout Grid.Row="0"
+                           HorizontalOptions="Start"
+                           Spacing="10"
+                           HeightRequest="140"
+                           Padding="40,15,0,0"
+                           Margin="0,0,0,20"
+                           x:Name="MainContent">
 
-                    <VerticalStackLayout
-                        Spacing="0"
-                        HorizontalOptions="FillAndExpand"
-                        Padding="0,30,0,0"
-                        Margin="5,0,0,0">
+                        <Image Source="defaultpicture3.png"
+                           HeightRequest="110"
+                           WidthRequest="110"
+                           BackgroundColor="#4BA734"
+                           VerticalOptions="Center"/>
 
-                        <Label Text="Ferdinand Roxas"
-                            FontAttributes="Bold"
-                            FontFamily="PoppinsBold"
-                            FontSize="20"
-                            TextColor="White"
-                            VerticalOptions="Center"
-                            Margin="0,0,0,5"
-                            HorizontalOptions="StartAndExpand"/>
+                        <VerticalStackLayout
+                            Spacing="0"
+                            HorizontalOptions="FillAndExpand"
+                            Padding="0,20,0,0"
+                            Margin="5,0,0,0">
 
-                        <Label Text="Welcome"
-                            FontFamily="Poppins"
-                            FontSize="15"
-                            TextColor="White"
-                            VerticalOptions="Center"
-                            HorizontalOptions="StartAndExpand"/>
-                    </VerticalStackLayout>
-                    
-                </HorizontalStackLayout>
+                            <Label Text="{Binding FullName}"
+                                FontAttributes="Bold"
+                                FontFamily="PoppinsBold"
+                                FontSize="20"
+                                TextColor="White"
+                                VerticalOptions="Center"
+                                Margin="0,0,0,5"
+                                HorizontalOptions="StartAndExpand"/>
 
-                <Border Grid.Row="1"
-                StrokeThickness="0"
-                StrokeShape="RoundRectangle 30,30,0,0"
-                BackgroundColor="White">
+                            <Label Text="Welcome"
+                                FontFamily="Poppins"
+                                FontSize="18"
+                                TextColor="White"
+                                VerticalOptions="Center"
+                                HorizontalOptions="StartAndExpand"/>
+                        </VerticalStackLayout>
 
-                    <VerticalStackLayout Spacing="10" 
-                                 Padding="20"
-                                 HorizontalOptions="FillAndExpand">
-                        <Label 
-                    Text="Welcome to .NET MAUI!"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center" />
-                    </VerticalStackLayout>
+                    </HorizontalStackLayout>
 
-                </Border>
+                    <Border Grid.Row="1"
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 30,30,0,0"
+                        BackgroundColor="White">
+
+                        <VerticalStackLayout 
+                            Spacing="10" 
+                            Padding="30, 50, 30, 0"
+                            HorizontalOptions="FillAndExpand">
+
+                            <Grid RowSpacing="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="130"/>
+                                    <RowDefinition Height="130"/>
+                                    <RowDefinition Height="130"/>
+                                </Grid.RowDefinitions>
+
+                                <Border Grid.Row="0"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 10, 10, 10, 10">
+
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="onBtnClickUpload"/>
+                                    </Border.GestureRecognizers>
+
+                                    <Border.Shadow>
+                                        <Shadow Brush="Black" Offset="0,4" Opacity="0.3" Radius="6"/>
+                                    </Border.Shadow>
+
+                                    <HorizontalStackLayout Grid.Row="0"
+                                        HorizontalOptions="Start"
+                                        Spacing="10"
+                                        HeightRequest="140"
+                                        Padding="10"
+                                        Margin="0,0,0,0">
+
+                                        <Image Source="upload.png"
+                                            HeightRequest="110"
+                                            WidthRequest="110"
+                                            VerticalOptions="Center"/>
+
+
+                                        <Label Text="Upload Photo of Waste Accumulation"
+                                                FontFamily="RobotoMono"
+                                                FontSize="18"
+                                                TextColor="Black"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="StartAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                HorizontalTextAlignment="Center"
+                                                WidthRequest="180"/>
+
+                                    </HorizontalStackLayout>
+
+                                </Border>
+
+                                <Border Grid.Row="1"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 10, 10, 10, 10">
+
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="onBtnClickExchange"/>
+                                    </Border.GestureRecognizers>
+
+                                    <Border.Shadow>
+                                        <Shadow Brush="Black" Offset="0,4" Opacity="0.3" Radius="6"/>
+                                    </Border.Shadow>
+
+                                    <HorizontalStackLayout Grid.Row="0"
+                                        HorizontalOptions="Start"
+                                        Spacing="10"
+                                        HeightRequest="140"
+                                        Padding="10"
+                                        Margin="0,0,0,0">
+
+                                        <Image Source="exchange.png"
+                                            HeightRequest="110"
+                                            WidthRequest="110"
+                                            VerticalOptions="Center"/>
+
+
+                                        <Label Text="Trade/Buy Recycable Waste/Materials"
+                                                FontFamily="RobotoMono"
+                                                FontSize="18"
+                                                TextColor="Black"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="StartAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                HorizontalTextAlignment="Center"
+                                                WidthRequest="180"/>
+
+                                    </HorizontalStackLayout>
+
+                                </Border>
+
+                                <Border Grid.Row="2"
+                                        StrokeThickness="1"
+                                        StrokeShape="RoundRectangle 10, 10, 10, 10">
+
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="onBtnClickGarbageTrack"/>
+                                    </Border.GestureRecognizers>
+
+                                    <Border.Shadow>
+                                        <Shadow Brush="Black" Offset="0,4" Opacity="0.3" Radius="6"/>
+                                    </Border.Shadow>
+
+                                    <HorizontalStackLayout Grid.Row="0"
+                                        HorizontalOptions="Start"
+                                        Spacing="10"
+                                        HeightRequest="140"
+                                        Padding="10"
+                                        Margin="0,0,0,0">
+
+                                        <Image Source="route.png"
+                                            HeightRequest="110"
+                                            WidthRequest="110"
+                                            VerticalOptions="Center"/>
+
+
+                                        <Label Text="Track Garbage tracks in Area"
+                                                FontFamily="RobotoMono"
+                                                FontSize="18"
+                                                TextColor="Black"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="StartAndExpand"
+                                                LineBreakMode="WordWrap"
+                                                HorizontalTextAlignment="Center"
+                                                WidthRequest="180"/>
+
+                                    </HorizontalStackLayout>
+
+                                </Border>
+
+                            </Grid>
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                <Grid x:Name="LoadingIndicator"
+      BackgroundColor="#80000000"
+      IsVisible="False"
+      VerticalOptions="FillAndExpand"
+      HorizontalOptions="FillAndExpand"
+      ZIndex="999">
+                    <ActivityIndicator IsRunning="True"
+                       Color="White"
+                       WidthRequest="60"
+                       HeightRequest="60"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+                </Grid>
             </Grid>
-        </layout:BasePage.PageContent>
-    </layout:BasePage>
+            </layout:BasePage.PageContent>
+        </layout:BasePage>
 </ContentPage>

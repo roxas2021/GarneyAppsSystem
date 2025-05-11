@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GarneyAppSystem.Views.Home.MarketPage"
+             xmlns:layout="clr-namespace:GarneyAppSystem"
+             Title="MarketPage">
+
+    <layout:BasePage x:Name="BasePage">
+        <layout:BasePage.PageContent>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <HorizontalStackLayout Grid.Row="0"
+                       HorizontalOptions="Start"
+                       Spacing="10"
+                       HeightRequest="80"
+                       Padding="35,0,0,0"
+                       Margin="0,0,0,20">
+
+                    <Image Source="exchange.png"
+                       HeightRequest="100"
+                       WidthRequest="100"
+                       BackgroundColor="#4BA734"
+                       VerticalOptions="Center"/>
+
+                    <VerticalStackLayout
+                        Spacing="0"
+                        HorizontalOptions="FillAndExpand"
+                        Padding="0"
+                        Margin="5,0,0,0">
+
+                        <Label Text="Trade/Buy Recycable Materials"
+                               FontAttributes="Bold"
+                               FontFamily="RobotoMono"
+                               FontSize="21"
+                               TextColor="White"
+                               VerticalOptions="Center"
+                               HorizontalOptions="StartAndExpand"
+                               LineBreakMode="WordWrap"
+                               HorizontalTextAlignment="Start"
+                               WidthRequest="250"/>
+                    </VerticalStackLayout>
+
+                </HorizontalStackLayout>
+
+                <Border Grid.Row="1"
+                    StrokeThickness="0"
+                    StrokeShape="RoundRectangle 30,30,0,0"
+                    BackgroundColor="White">
+
+
+                </Border>
+            </Grid>
+        </layout:BasePage.PageContent>
+    </layout:BasePage>
+</ContentPage>

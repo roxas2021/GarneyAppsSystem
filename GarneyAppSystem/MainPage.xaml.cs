@@ -39,6 +39,7 @@ namespace GarneyAppSystem
                 if (result != null && !string.IsNullOrWhiteSpace(result.apiResult?.token))
                 {
                     Preferences.Set("authToken", result.apiResult.token);
+                    Preferences.Set("uid", result.user.Id);
 
                     await Navigation.PushAsync(new HomeIndex());
                 }

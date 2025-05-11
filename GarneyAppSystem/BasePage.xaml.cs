@@ -3,9 +3,12 @@ using GarneyAppSystem.Views.Home;
 using GarneyAppSystem.Views.Dashboard;
 using GarneyAppSystem.Views.Location;
 using GarneyAppSystem.Views.Profile;
+using GarneyAppSystem.ApiService;
 
 public partial class BasePage : ContentView
 {
+    private readonly UserService _userService;
+
 	public BasePage()
 	{
 		InitializeComponent();
@@ -30,7 +33,12 @@ public partial class BasePage : ContentView
 
         await image.ScaleTo(1, 100, Easing.CubicOut);
 
-        await Navigation.PushAsync(new HomeBase());
+        //string authToken = Preferences.Get("authToken", string.Empty);
+        //int userId = Preferences.Get("uid", defaultValue: 0);
+
+        //var data = await _userService.getUserDetail(userId, authToken);
+
+        await Navigation.PushAsync(new HomeIndex());
     }
 
     private async void OnBtnClickeddashboard(object sender, EventArgs e)
@@ -63,6 +71,6 @@ public partial class BasePage : ContentView
 
         await image.ScaleTo(1, 100, Easing.CubicOut);
 
-        await Navigation.PushAsync(new LocationIndex());
+        await Navigation.PushAsync(new GarbageTrackPage());
     }
 }

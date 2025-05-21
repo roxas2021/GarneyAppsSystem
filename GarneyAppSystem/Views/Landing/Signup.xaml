@@ -1,34 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             Shell.NavBarIsVisible="False"
-             x:Class="GarneyAppSystem.MainPage"
+             x:Class="GarneyAppSystem.Views.Landing.Signup"
              xmlns:local="clr-namespace:GarneyAppSystem"
              xmlns:customControls="clr-namespace:GarneyAppSystem.CustomControls"
              BackgroundColor="White">
-
+    
     <Grid>
 
         <Grid RowDefinitions="Auto, *"
-              Padding="20,10,20,20"
+              Padding="20,0,20,20"
               ZIndex="1">
 
             <VerticalStackLayout Grid.Row="0"
-                                 HorizontalOptions="Center">
+                                 HorizontalOptions="Center"
+                                 Spacing="10">
 
-                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
-                    <Label Text="GARNEY"
-                           FontAttributes="Bold"
-                           FontFamily="OpenSans"
-                           FontSize="30"
-                           TextColor="#2E4A21" />
-
-                    <Image Source="recyclesign.png"
-                           HeightRequest="40"
-                           WidthRequest="40" />
-                </HorizontalStackLayout>
-
-                <Image Source="loginbg.jpg"
+                <Image Source="loginbg2.jpg"
                        Aspect="AspectFill"
                        HeightRequest="230"/>
 
@@ -36,7 +24,7 @@
                      HorizontalOptions="Fill"
                      Color="#EEE"
                      Margin="10,0,10,0"/>
-                
+
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Row="1"
@@ -45,20 +33,56 @@
                                  VerticalOptions="Start"
                                  HorizontalOptions="FillAndExpand">
 
-                <Label Text="Sign-In"
+                <Label Text="Sign-Up"
                        FontAttributes="Bold"
                        FontFamily="Montserat"
                        FontSize="35"
                        TextColor="#2E4A21"
                        HorizontalOptions="Start" />
 
-                <Label Text="Please signin to continue"
+                <Label Text="Signup your account here"
                        FontFamily="Montserat"
                        FontSize="15"
                        TextColor="#2E4A21"
                        HorizontalOptions="Start" />
 
                 <Border HorizontalOptions="FillAndExpand" BackgroundColor="#eee" StrokeThickness="0" StrokeShape="RoundRectangle 25" Padding="10" Margin="0,10,0,0" HeightRequest="40">
+                    <Grid ColumnDefinitions="Auto,*" VerticalOptions="Center">
+                        <Image Source="profile4.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               Margin="5,0,0,0"
+                               VerticalOptions="Center" />
+
+                        <customControls:StandardEntry 
+                                Grid.Column="1"
+                                TextColor="#2E4A21"
+                                Margin="10,0,0,0"
+                                BackgroundColor="Transparent"
+                                Placeholder="Full Name"
+                                x:Name="txtfullname" />
+                    </Grid>
+                </Border>
+
+                <Border HorizontalOptions="FillAndExpand" BackgroundColor="#eee" StrokeThickness="0" StrokeShape="RoundRectangle 25" Padding="10" Margin="0" HeightRequest="40">
+                    <Grid ColumnDefinitions="Auto,*" VerticalOptions="Center">
+                        <Image Source="addressicon.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               Margin="5,0,0,0"
+                               VerticalOptions="Center" />
+
+                        <customControls:StandardEntry 
+                                Grid.Column="1"
+                                TextColor="#2E4A21"
+                                Margin="10,0,0,0"
+                                BackgroundColor="Transparent"
+                                Placeholder="Address"
+                                x:Name="txtaddress" />
+                    </Grid>
+                </Border>
+
+                <Border HorizontalOptions="FillAndExpand" BackgroundColor="#eee" StrokeThickness="0" StrokeShape="RoundRectangle 25" Padding="10" Margin="0" HeightRequest="40">
                     <Grid ColumnDefinitions="Auto,*" VerticalOptions="Center">
                         <Image Source="loginemail.png"
                                WidthRequest="20"
@@ -95,7 +119,7 @@
                     </Grid>
                 </Border>
 
-                <Button Text="LOGIN"
+                <Button Text="Register"
                         BackgroundColor="#2E4A21"
                         FontAttributes="Bold"
                         FontFamily="Montserrat"
@@ -105,51 +129,25 @@
                         Margin="0,10,0,0"
                         HorizontalOptions="FillAndExpand"
                         x:Name="btnLogin"
-                        Clicked="OnLoginButtonClicked"/>
+                        Clicked="OnSignupButtonClicked"/>
 
                 <Label HorizontalOptions="Center" FontSize="15" TextColor="#2E4A21">
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Don't have account? " TextColor="#2E4A21" FontFamily="Montserat" />
-                            <Span Text="Signup"
+                            <Span Text="Already have account? " FontFamily="Montserat" />
+                            <Span Text="Login"
                                   FontFamily="Montserat"
                                   FontAttributes="Bold"
                                   TextColor="#2E4A21">
                                 <Span.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnSignupTapped" />
+                                    <TapGestureRecognizer Tapped="OnLoginTapped" />
                                 </Span.GestureRecognizers>
                             </Span>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                
-                <Grid Margin="10" HeightRequest="20">
-                    <BoxView BackgroundColor="#EEE"
-                             VerticalOptions="Center"
-                             HeightRequest="1"
-                             HorizontalOptions="Fill" />
-
-                    <Label Text="or"
-                           BackgroundColor="White"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           Padding="10,0"
-                           TextColor="Gray"
-                           FontSize="14"/>
-                </Grid>
-                
-                <Image Source="google.png"
-                       HeightRequest="50"
-                       WidthRequest="50"
-                       HorizontalOptions="Center">
-                    
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnGoogleIconTapped" />
-                    </Image.GestureRecognizers>
-                </Image>
 
             </VerticalStackLayout>
         </Grid>
     </Grid>
-
 </ContentPage>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GarneyAppSystem.Views.Profile.EditProfilePicture"
+             xmlns:layout="clr-namespace:GarneyAppSystem">
+
+    <layout:BasePage x:Name="BasePage">
+        <layout:BasePage.HeaderContent>
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="1"/>
+                </Grid.RowDefinitions>
+
+                <VerticalStackLayout Grid.Row="0" Margin="0" Spacing="0">
+                    <Grid Padding="20, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0"
+                               Text="Edit Profile Picture"
+                               FontFamily="Montserat"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               Margin="0,8,0,0"/>
+                    </Grid>
+                </VerticalStackLayout>
+
+                <BoxView Grid.Row="1" HeightRequest="1"
+                     HorizontalOptions="Fill"
+                     Color="#EEE"
+                     Margin="0,0,0,0"/>
+            </Grid>
+        </layout:BasePage.HeaderContent>
+        <layout:BasePage.PageContent>
+            <Grid x:Name="MainContent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="350"/>
+                    <RowDefinition Height="1"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Frame HeightRequest="280"
+                           WidthRequest="280"
+                           Padding="0"
+                           Margin="50"
+                           BorderColor="Transparent"
+                           BackgroundColor="Transparent"
+                           HasShadow="True">
+                        <Image Source="{Binding imageDIR}"
+                               x:Name="ProfileImage"
+                               HeightRequest="280"
+                               WidthRequest="280"
+                               Aspect="AspectFill"
+                               VerticalOptions="Center"
+                               HorizontalOptions="FillAndExpand"/>
+                    </Frame>
+                </Grid>
+
+                <BoxView Grid.Row="1" HeightRequest="1"
+                     HorizontalOptions="Fill"
+                     Color="#eee"
+                     Margin="20"/>
+
+                <Grid Grid.Row="2" VerticalOptions="Start" Margin="40">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0"
+                            Text="Upload Picture"
+                            FontFamily="Montserrat"
+                            BackgroundColor="#2E4A21"
+                            TextColor="White"
+                            CornerRadius="8"
+                            HeightRequest="40"
+                            x:Name="btnLogin"
+                            Margin="0,0,5,0"
+                            Clicked="OnClickUploadPictureBtn"/>
+
+                    <Button Grid.Column="1"
+                            Text="Save"
+                            FontFamily="Montserrat"
+                            BackgroundColor="#2E4A21"
+                            TextColor="White"
+                            CornerRadius="8"
+                            HeightRequest="40"
+                            x:Name="btnLogout"
+                            Margin="5,0,0,0"
+                            Clicked="OnClickSavePictureBtn"/>
+                </Grid>
+
+                <Grid x:Name="LoadingIndicator"
+                       BackgroundColor="#80000000"
+                       IsVisible="False"
+                       VerticalOptions="FillAndExpand"
+                       HorizontalOptions="FillAndExpand"
+                       ZIndex="10">
+                    <ActivityIndicator IsRunning="True"
+                                Color="White"
+                                WidthRequest="60"
+                                HeightRequest="60"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center" />
+                </Grid>
+            </Grid>
+        </layout:BasePage.PageContent>
+    </layout:BasePage>
+</ContentPage>

@@ -26,9 +26,9 @@ namespace GarneyAppSystem.ApiService
 
             #if DEBUG
                 baseUrl = _config.apiUrl_test;
-#else
+            #else
                 baseUrl = _config.apiUrl;
-#endif
+            #endif
 
             return baseUrl;
         }
@@ -37,6 +37,10 @@ namespace GarneyAppSystem.ApiService
         {
             try
             {
+                string authToken = Preferences.Get("authToken", string.Empty);
+
+                _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", authToken);
+
                 var response = await _httpClient.PostAsync( getUrl() + endpoint, content);
 
                 var body = await response.Content.ReadAsStringAsync();

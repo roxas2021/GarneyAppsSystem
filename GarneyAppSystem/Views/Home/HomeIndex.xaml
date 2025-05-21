@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GarneyAppSystem.Views.Home.HomeIndex"
-             Title="HomePage"
+             xmlns:views="clr-namespace:GarneyAppSystem.Views.Layout"
              xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:layout="clr-namespace:GarneyAppSystem">
 
@@ -22,9 +22,9 @@
                     <Border.Shadow>
                         <Shadow
                         Brush="#2E4A21"
-                        Offset="2,2"
-                        Radius="8"
-                        Opacity="0.2" />
+                        Offset="1,1"
+                        Radius="20"
+                        Opacity="0.15" />
                      </Border.Shadow>
                     
                     <Grid Padding="15, 0">
@@ -38,44 +38,48 @@
                            Spacing="10"
                            HeightRequest="80"
                            Padding="0"
-                           Margin="0"
-                           x:Name="MainContent">
+                           Margin="0">
 
-                            <Image Source="defaultpicture3.png"
-                           HeightRequest="70"
-                           WidthRequest="70"
-                           VerticalOptions="Center"/>
+                            <Frame HeightRequest="70"
+                                   WidthRequest="70"
+                                   Padding="0"
+                                   CornerRadius="70" HasShadow="True">
+                                <Image Source="{Binding imageDIR}"
+                                       x:Name="ProfileImage"
+                                       HeightRequest="70"
+                                       Aspect="AspectFill"/>
+                            </Frame>
 
                             <VerticalStackLayout
-                            Spacing="0"
-                            Padding="0"
-                            Margin="2,10,0,0">
+                                    Spacing="0"
+                                    Padding="0"
+                                    Margin="2,10,0,0">
 
-                                <Label Text="{Binding FullName}"
-                                FontAttributes="Bold"
-                                FontFamily="Montserrat"
-                                FontSize="15"
-                                TextColor="#2E4A21"
-                                VerticalOptions="Center"
-                                HorizontalOptions="StartAndExpand"/>
+                                <Label  Text="{Binding FullName}"
+                                        FontAttributes="Bold"
+                                        FontFamily="Montserrat"
+                                        FontSize="15"
+                                        TextColor="#2E4A21"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="StartAndExpand"/>
 
-                                <Label Text="Hindang Leyte"
-                                FontFamily="Montserrat"
-                                FontSize="13"
-                                TextColor="#2E4A21"
-                                VerticalOptions="Center"
-                                HorizontalOptions="StartAndExpand"/>
+                                <Label  Text="{Binding Address}"
+                                        FontFamily="Montserrat"
+                                        FontSize="13"
+                                        TextColor="#2E4A21"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="StartAndExpand"/>
                             </VerticalStackLayout>
 
                         </HorizontalStackLayout>
 
                         <Image Source="bell2.png"
-                           HeightRequest="23"
-                           WidthRequest="23"
-                           VerticalOptions="Start"
-                           HorizontalOptions="End"
-                           Margin="0, 10, 5, 0"
-                           Grid.Column="1" />
+                               HeightRequest="23"
+                               WidthRequest="23"
+                               VerticalOptions="Start"
+                               HorizontalOptions="End"
+                               Margin="0, 10, 5, 0"
+                               Grid.Column="1" />
                     </Grid>
                 </Border>
 
@@ -86,30 +90,53 @@
             </Grid>
         </layout:BasePage.HeaderContent>
         <layout:BasePage.PageContent>
-            <Grid>
+            <Grid x:Name="MainContent">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="350"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Border Grid.Row="0" 
+                <!--<Border Grid.Row="0" 
                         Margin="20,20,20,10" 
                         StrokeThickness="0"
                         StrokeShape="RoundRectangle 12">
+                                        
+                                        <Border.Shadow>
+                                            <Shadow
+                                                Brush="#2E4A21"
+                                                Offset="2,2"
+                                                Radius="8"
+                                                Opacity="0.2" />
+                                        </Border.Shadow>
 
-                    <Border.Shadow>
-                        <Shadow
-                        Brush="#2E4A21"
-                        Offset="2,2"
-                        Radius="8"
-                        Opacity="0.2" />
-                    </Border.Shadow>
-
-                    <Image Source="dashboardcontent.png"
+                    <Image Source="bg.png"
                        VerticalOptions="FillAndExpand"
                        HorizontalOptions="FillAndExpand"
                        Aspect="AspectFill" />
-                </Border>
+                </Border>-->
+
+
+                <CarouselView x:Name="ImageCarousel"
+                              HeightRequest="300"
+                              IndicatorView="indicatorView"
+                              HorizontalOptions="FillAndExpand"
+                              IsBounceEnabled="False"
+                              Loop="True">
+
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding}" 
+                                   Aspect="AspectFill" 
+                                   HeightRequest="300"/>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+
+                <IndicatorView x:Name="indicatorView"
+                               HorizontalOptions="Center"
+                               Margin="0,10"
+                               IndicatorColor="LightGray"
+                               SelectedIndicatorColor="#2E4A21"/>
 
                 <Border Grid.Row="1"
                         StrokeThickness="0"
@@ -127,28 +154,51 @@
                                 <RowDefinition Height="130"/>
                             </Grid.RowDefinitions>
 
-                            <Label Grid.Row="0" 
-                                   Text="Services"
-                                   FontFamily="Montserrat"
-                                   FontAttributes="Bold"     
-                                   FontSize="15"
-                                   TextColor="#2E4A21"/>
+
+                            <Grid Margin="10" HeightRequest="45">
+                                <BoxView BackgroundColor="#2E4A21"
+                                     VerticalOptions="Center"
+                                     HeightRequest="1"
+                                     HorizontalOptions="Fill" />
+
+                                <Label Text="Services"
+                                       FontFamily="Montserrat"
+                                       FontAttributes="Bold"
+                                       BackgroundColor="White"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Padding="10,0"
+                                       TextColor="#2E4A21"
+                                       FontSize="25"/>
+                            </Grid>
 
                             <HorizontalStackLayout Grid.Row="1"
-                                        HorizontalOptions="Start"
+                                        HorizontalOptions="Center"
                                         Spacing="10"
                                         HeightRequest="140"
                                         Padding="10"
-                                        Margin="0,0,0,0">
-                                
-                                <Grid RowSpacing="10">
+                                        Margin="0,15,0,0">
+
+                                <Grid RowSpacing="10" ColumnSpacing="10">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="100"/>
                                         <ColumnDefinition Width="100"/>
                                         <ColumnDefinition Width="100"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Border Grid.Column="0" StrokeThickness="0">
+                                    <Border Grid.Column="0"
+                                            Stroke="#eee"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8"
+                                            Padding="15"
+                                            BackgroundColor="White">
+
+                                        <Border.Shadow>
+                                            <Shadow Brush="Black"
+                                                Opacity="0.2"
+                                                Offset="5,5"
+                                                Radius="10" />
+                                        </Border.Shadow>
 
                                         <Border.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="onBtnClickUpload"/>
@@ -165,12 +215,24 @@
                                                FontSize="11"
                                                FontAttributes="Bold"
                                                TextColor="#2E4A21"/>
-                                            
+
                                         </VerticalStackLayout>
 
                                     </Border>
 
-                                    <Border Grid.Column="1" StrokeThickness="0">
+                                    <Border Grid.Column="1"
+                                            Stroke="#eee"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8"
+                                            Padding="15"
+                                            BackgroundColor="White">
+
+                                        <Border.Shadow>
+                                            <Shadow Brush="Black"
+                                                    Opacity="0.2"
+                                                    Offset="5,5"
+                                                    Radius="10" />
+                                        </Border.Shadow>
 
                                         <Border.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="onBtnClickExchange"/>
@@ -192,7 +254,19 @@
 
                                     </Border>
 
-                                    <Border Grid.Column="2" StrokeThickness="0">
+                                    <Border Grid.Column="2"
+                                            Stroke="#eee"
+                                            StrokeThickness="0"
+                                            StrokeShape="RoundRectangle 8"
+                                            Padding="15"
+                                            BackgroundColor="White">
+
+                                        <Border.Shadow>
+                                            <Shadow Brush="Black"
+                                                    Opacity="0.2"
+                                                    Offset="5,5"
+                                                    Radius="10" />
+                                        </Border.Shadow>
 
                                         <Border.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="onBtnClickGarbageTrack"/>
@@ -204,9 +278,9 @@
                                                WidthRequest="50"
                                                VerticalOptions="Center" />
 
-                                            <Label Text="Track Garbage"
+                                            <Label Text="Track Garba..."
                                                FontFamily="Montserrat"
-                                               FontSize="11"
+                                               FontSize="10"
                                                FontAttributes="Bold"
                                                TextColor="#2E4A21"/>
 
@@ -221,7 +295,6 @@
                     </VerticalStackLayout>
 
                 </Border>
-
                 <Grid x:Name="LoadingIndicator"
                           BackgroundColor="#80000000"
                           IsVisible="False"
@@ -231,10 +304,14 @@
                     <ActivityIndicator IsRunning="True"
                            Color="White"
                            WidthRequest="60"
-                           HeightRequest="60"
                            VerticalOptions="Center"
                            HorizontalOptions="Center" />
                 </Grid>
+                <!--<views:LoadingView x:Name="LoadingOverlay" 
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   IsVisible="False"
+                                   ZIndex="999"/>-->
             </Grid>
          </layout:BasePage.PageContent>
     </layout:BasePage>

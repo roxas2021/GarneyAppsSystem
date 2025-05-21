@@ -16,7 +16,16 @@ namespace GarneyAppSystemAPI.Repo
 
         public async Task<user> getUser(string email)
         {
-            return _dbConn.user.FirstOrDefault(u => u.Email == email);
+            try
+            {
+                return _dbConn.user.FirstOrDefault(u => u.Email == email);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return null;
         }
 
         public async Task<user> getUserById(int Id)
@@ -39,7 +48,7 @@ namespace GarneyAppSystemAPI.Repo
         {
             var exisUser = await _dbConn.user.FindAsync(data.Id);
 
-            if(exisUser != null)
+            if (exisUser != null)
             {
                 exisUser.FullName = data.FullName;
                 exisUser.Age = data.Age;
@@ -47,7 +56,7 @@ namespace GarneyAppSystemAPI.Repo
                 exisUser.Email = data.Email;
                 exisUser.ContactNo = data.ContactNo;
                 exisUser.Address = data.Address;
-                exisUser.Role = data.UserType == "Guest"? 0 : 1;
+                exisUser.Role = data.UserType == "Guest" ? 0 : 1;
                 exisUser.PasswordHash = EncryptionHelper.Encrypt(data.PasswordHash);
                 exisUser.UpdatedDate = DateTime.Now;
 
@@ -56,6 +65,38 @@ namespace GarneyAppSystemAPI.Repo
             }
 
             return null;
+        }
+
+        public async Task saveImageFileName(int id, string fileName)
+        {
+            var user = await _dbConn.user.FindAsync(id);
+            if (user != null)
+            {
+                user.imageDIR = fileName;
+                await _dbConn.SaveChangesAsync();
+            }
+        }
+
+        public async Task<user> InsertUser(user user)
+        {
+            try
+            {
+                _dbConn.user.Add(user);
+                await _dbConn.SaveChangesAsync();
+
+                return user;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return null;
+        }
+
+        public async Task<bool> checkEmail(string email)
+        {
+            return _dbConn.user.Any(u => u.Email == email);
         }
     }
 }

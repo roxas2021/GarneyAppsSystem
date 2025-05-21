@@ -17,7 +17,11 @@ namespace GarneyAppSystemAPI.Middleware
         {
             var path = context.Request.Path.Value;
 
-            if (path.StartsWith("/api/login", StringComparison.OrdinalIgnoreCase) || path.StartsWith("/swagger", StringComparison.OrdinalIgnoreCase))
+            if (path.StartsWith("/api/login", StringComparison.OrdinalIgnoreCase) || 
+                path.StartsWith("/swagger", StringComparison.OrdinalIgnoreCase) ||
+                path.StartsWith("/api/user/InsertUser", StringComparison.OrdinalIgnoreCase) ||
+                path.StartsWith("/api/user/checkEmail", StringComparison.OrdinalIgnoreCase) ||
+                path.StartsWith("/profileuploads", StringComparison.OrdinalIgnoreCase) )
             {
                 await _next(context);
                 return;

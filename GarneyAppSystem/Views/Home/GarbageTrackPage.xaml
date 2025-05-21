@@ -4,8 +4,7 @@
              x:Class="GarneyAppSystem.Views.Home.GarbageTrackPage"
              xmlns:layout="clr-namespace:GarneyAppSystem"
              xmlns:customControls="clr-namespace:GarneyAppSystem.CustomControls"
-              xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
-             Title="GarbageTrackPage">
+              xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps">
 
     <layout:BasePage x:Name="BasePage">
         <layout:BasePage.HeaderContent>
@@ -23,7 +22,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0"
-                               Text="Track Garbage"
+                               Text="Track Garbage Collector"
                                FontFamily="Montserat"
                                FontSize="15"
                                FontAttributes="Bold"

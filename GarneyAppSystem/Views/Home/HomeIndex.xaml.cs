@@ -6,11 +6,48 @@ namespace GarneyAppSystem.Views.Home;
 public partial class HomeIndex : ContentPage
 {
     private readonly UserService _userservice = new UserService();
+    private int _currentIndex = 0;
+    private CancellationTokenSource _cancellationTokenSource;
 
-	public HomeIndex()
+    public HomeIndex()
 	{
 		InitializeComponent();
-        //LoadData();
+
+        ImageCarousel.ItemsSource = _imageList;
+
+        StartAutoScroll();
+    }
+
+    private readonly List<string> _imageList = new()
+    {
+        "bg.png",
+        "bg2.png",
+        "bg3.png"
+    };
+
+    private void StartAutoScroll()
+    {
+        _cancellationTokenSource = new CancellationTokenSource();
+
+        Device.StartTimer(TimeSpan.FromSeconds(3), () =>
+        {
+            if (_imageList.Count == 0 || _cancellationTokenSource.IsCancellationRequested)
+                return false;
+
+            _currentIndex = (_currentIndex + 1) % _imageList.Count;
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                ImageCarousel.Position = _currentIndex;
+            });
+
+            return true;
+        });
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        _cancellationTokenSource?.Cancel();
     }
 
     public async void LoadData()
@@ -39,12 +76,26 @@ public partial class HomeIndex : ContentPage
     {
         base.OnAppearing();
 
+        //LoadingOverlay.Show();
+
         LoadingIndicator.IsVisible = true;
         MainContent.IsVisible = true;
 
         try
         {
             var user = await _userservice.getUserDetail();
+
+            string imagedir = string.Empty;
+
+            #if DEBUG
+                    //imagedir = "http://192.168.2.75:5166/profileuploads/";
+                    imagedir = "http://pinoypride-001-site1.ntempurl.com/profileuploads/";
+            #else
+                    imagedir = "http://pinoypride-001-site1.ntempurl.com/profileuploads/";
+            #endif
+
+            user.user.imageDIR = user.user.imageDIR != "profile4.png"? imagedir + user.user.imageDIR : user.user.imageDIR;
+
             BindingContext = user.user;
         }
         catch (Exception ex)
@@ -54,6 +105,7 @@ public partial class HomeIndex : ContentPage
         finally
         {
             LoadingIndicator.IsVisible = false;
+            //LoadingOverlay.Hide();
             MainContent.IsVisible = true;
         }
 

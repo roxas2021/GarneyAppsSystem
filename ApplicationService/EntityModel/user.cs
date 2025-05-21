@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationService.EntityModel
 {
-    public class user : INotifyPropertyChanged
+    public class user
     {
         public int Id { get; set; }
 
@@ -22,13 +22,12 @@ namespace ApplicationService.EntityModel
         [Required(ErrorMessage = "Name is required.")]
         public string FullName { get; set; }
 
-        [Required(ErrorMessage = "Age is required.")]
         public int? Age { get; set; }
 
         [Required(ErrorMessage = "Address is required.")]
         public string Address { get; set; }
 
-        public string ContactNo { get; set; }
+        public string? ContactNo { get; set; }
 
         public int Role { get; set; }
 
@@ -44,6 +43,8 @@ namespace ApplicationService.EntityModel
 
         public string imageDIR { get; set; }
 
+        //protected void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
         public string UserType
         {
             get
@@ -53,27 +54,29 @@ namespace ApplicationService.EntityModel
         }
 
         private DateTime _dob;
-        public DateTime DOB
-        {
-            get => _dob;
-            set
-            {
-                if (_dob != value)
-                {
-                    _dob = value;
-                    OnPropertyChanged();
-                    OnPropertyChanged(nameof(DOBFormatted));
-                }
-            }
-        }
+
+        public DateTime DOB { get; set; }
+        //public DateTime DOB
+        //{
+        //    get => _dob;
+        //    set
+        //    {
+        //        if (_dob != value)
+        //        {
+        //            _dob = value;
+        //            OnPropertyChanged();
+        //            OnPropertyChanged(nameof(DOBFormatted));
+        //        }
+        //    }
+        //}
 
         public string DOBFormatted => DOB.ToString("MMMM dd, yyyy");
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
+        //protected void OnPropertyChanged([CallerMemberName] string name = null)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        //}
     }
 }

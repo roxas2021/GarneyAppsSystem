@@ -1,5 +1,6 @@
 ﻿using GarneyAppSystem.ApiService;
 using GarneyAppSystem.Views.Home;
+using GarneyAppSystem.Views.Landing;
 //using Android.OS;
 
 namespace GarneyAppSystem
@@ -45,6 +46,16 @@ namespace GarneyAppSystem
             {
                 await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
             }
+        }
+
+        private async void OnSignupTapped(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Signup());
+        }
+
+        private async void OnGoogleIconTapped(object sender, EventArgs e)
+        {
+
         }
     }
 

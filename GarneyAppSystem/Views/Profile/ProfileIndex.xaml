@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GarneyAppSystem.Views.Profile.ProfileIndex"
              xmlns:layout="clr-namespace:GarneyAppSystem"
-             xmlns:customControls="clr-namespace:GarneyAppSystem.CustomControls"
-             Title="ProfileIndex">
+             xmlns:views="clr-namespace:GarneyAppSystem.Views.Layout"
+             xmlns:customControls="clr-namespace:GarneyAppSystem.CustomControls">
 
     <layout:BasePage x:Name="BasePage">
         <layout:BasePage.HeaderContent>
@@ -45,7 +45,7 @@
             </Grid>
         </layout:BasePage.HeaderContent>
         <layout:BasePage.PageContent>
-            <Grid>
+            <Grid x:Name="MainContent">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="200"/>
                     <RowDefinition Height="1"/>
@@ -61,8 +61,10 @@
                            BackgroundColor="Transparent"
                            CornerRadius="75"
                            HasShadow="False">
-                        <Image Source="postimage.jpg"
+                        <Image Source="{Binding imageDIR}"
+                               x:Name="ProfileImage"
                                HeightRequest="150"
+                               WidthRequest="150"
                                Aspect="AspectFill"
                                VerticalOptions="Center"
                                HorizontalOptions="FillAndExpand"/>
@@ -82,7 +84,12 @@
                                HeightRequest="30"
                                WidthRequest="30"
                                VerticalOptions="Center"
-                               HorizontalOptions="Center"/>
+                               HorizontalOptions="Center">
+
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnEditImageTapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
                     </Frame>
                 </Grid>
 
@@ -108,7 +115,7 @@
 
                             <StackLayout Padding="10" Orientation="Vertical" Margin="0,5">
                                 <Label Text="Date of birth :" FontAttributes="Bold" FontFamily="Montserrat" TextColor="#2E4A21"/>
-                                <Label Text="{Binding DOB}" />
+                                <Label Text="{Binding DOBFormatted}" />
                                 <BoxView HeightRequest="1" BackgroundColor="#eee" HorizontalOptions="FillAndExpand" Margin="0,5,0,0"/>
                             </StackLayout>
                             
@@ -164,6 +171,19 @@
                             
                         </VerticalStackLayout>
                     </ScrollView>
+                </Grid>
+                <Grid x:Name="LoadingIndicator"
+                       BackgroundColor="#80000000"
+                       IsVisible="False"
+                       VerticalOptions="FillAndExpand"
+                       HorizontalOptions="FillAndExpand"
+                       ZIndex="10">
+                    <ActivityIndicator IsRunning="True"
+                                Color="White"
+                                WidthRequest="60"
+                                HeightRequest="60"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center" />
                 </Grid>
             </Grid>
         </layout:BasePage.PageContent>

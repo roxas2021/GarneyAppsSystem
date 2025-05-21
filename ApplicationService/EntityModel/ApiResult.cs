@@ -10,5 +10,7 @@ namespace ApplicationService.EntityModel
     {
         public string msg { get; set; }
         public string token { get; set; }
+        public int statuscode { get; set; }
+        public bool isExist { get; set; }
     }
 }

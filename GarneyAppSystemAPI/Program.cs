@@ -25,6 +25,8 @@ app.UseStaticFiles();
 
 app.UseMiddleware<AuthTokenHandler>();
 
+app.UseMiddleware<AuthTokenHandler>();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
